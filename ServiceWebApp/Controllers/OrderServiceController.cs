@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using BLServiceOrder;
-using System;
-using System.Threading.Tasks;
-using System.Data;
+﻿using BLServiceOrder;
+using Microsoft.AspNetCore.Mvc;
 using ServiceCommon.Request;
 
 namespace ServiceWebApp.Controllers
@@ -24,15 +21,15 @@ namespace ServiceWebApp.Controllers
         {
             if (request == null)
             {
-                return BadRequest("Invalid request payload."); 
+                return BadRequest("Invalid request payload.");
             }
 
             try
             {
-               // var order = 
-               // if (order == null)
-               // {
-                  //  return Ok(new { order = (object)null });
+                // var order = 
+                // if (order == null)
+                // {
+                //  return Ok(new { order = (object)null });
                 //}
 
                 return Ok(await _blServiceOrder.SelectOrderDetailsAsync(request));

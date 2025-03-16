@@ -1,6 +1,6 @@
 ﻿using System.Data;
-using Microsoft.Data.SqlClient;
 using DLServiceWebApp.DataService.Entity;
+using Microsoft.Data.SqlClient;
 using ServiceCommon.Response;
 
 namespace DLServiceWebApp.DataService

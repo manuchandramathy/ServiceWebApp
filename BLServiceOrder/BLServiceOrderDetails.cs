@@ -1,8 +1,5 @@
-﻿using System.Data;
-using DLServiceWebApp.DataService;
-using DLServiceWebApp.DataService.Entity;
+﻿using DLServiceWebApp.DataService;
 using ServiceCommon.Request;
-using ServiceCommon.Response;
 
 
 namespace BLServiceOrder
@@ -35,7 +32,7 @@ namespace BLServiceOrder
                 throw new ArgumentException("User cannot be null or empty.", nameof(request.User));
             }
 
-            var customer = await Task.Run(()=> _orderRepository.selectCustomerDetails(request.User, request.CustomerId));
+            var customer = await Task.Run(() => _orderRepository.selectCustomerDetails(request.User, request.CustomerId));
 
             if (customer == null)
             {
