@@ -11,8 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BLServiceWebapp\BLServiceWebapp.csproj" />
+    <ProjectReference Include="..\BLServiceOrder\BLServiceOrder.csproj" />
     <ProjectReference Include="..\DLServiceWebApp\DLServiceWebApp.csproj" />
+    <ProjectReference Include="..\ServiceCommon\ServiceCommon.csproj" />
   </ItemGroup>
 
 </Project>

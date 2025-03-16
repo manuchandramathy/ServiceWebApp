@@ -1,38 +1,46 @@
-﻿using System.Data;
-using Azure.Core;
-using BLServiceWebapp.BLservice;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using BLServiceOrder;
+using System;
+using System.Threading.Tasks;
+using System.Data;
 using ServiceCommon.Request;
 
 namespace ServiceWebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderServiceController : Controller
+    public class OrderServiceController : ControllerBase
     {
-        private readonly BLServiceOrder _blServiceOrder;
+        private readonly BLServiceOrderDetails _blServiceOrder;
 
-        public OrderServiceController(BLServiceOrder blServiceOrder)
+        public OrderServiceController(BLServiceOrderDetails blServiceOrder)
         {
-            _blServiceOrder = blServiceOrder;
+            _blServiceOrder = blServiceOrder ?? throw new ArgumentNullException(nameof(blServiceOrder));
         }
-        [HttpPost]
-        [Route("LastOrder")]
-        public IActionResult SelectOrderDetails([FromBody] DataTable dtrequest)
-        {
-            //var customer = _blServiceOrder.GetCustomerByEmailAndId(request.User, request.CustomerId);
-            //if (customer == null)
-            //{
-            //    return BadRequest("Invalid email or customer ID.");
-            //}
 
-            var order = _blServiceOrder.SelectOrderDetails(dtrequest);
-            if (order == null)
+        [HttpPost]
+        [Route("GetLastOrder")]
+        public async Task<IActionResult> GetLastOrder([FromBody] CustomerRequest request)
+        {
+            if (request == null)
             {
-                return Ok(new { order = (object)null });
+                return BadRequest("Invalid request payload."); 
             }
 
-            return Ok(new { order });
+            try
+            {
+               // var order = 
+               // if (order == null)
+               // {
+                  //  return Ok(new { order = (object)null });
+                //}
+
+                return Ok(await _blServiceOrder.SelectOrderDetailsAsync(request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while processing the request.", error = ex.Message });
+            }
         }
     }
 }

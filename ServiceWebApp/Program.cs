@@ -1,4 +1,4 @@
-using BLServiceWebapp.BLservice;
+using BLServiceOrder;
 using DLServiceWebApp.DataService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +21,7 @@ builder.Services.AddScoped<ServiceOrderRepository, ServiceOrderRepository>(provi
 });
 
 // Registering OrderService as a Singleton
-builder.Services.AddTransient<BLServiceOrder, BLServiceOrder>();
+builder.Services.AddTransient<BLServiceOrderDetails, BLServiceOrderDetails>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
